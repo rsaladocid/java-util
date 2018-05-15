@@ -53,7 +53,8 @@ public class TestConfiguration {
 
 	@Test
 	public void testSetProperties() {
-		Person test = (Person) Configuration.setProperties(new Person(), properties);
+		Person test = new Person();
+		Configuration.setProperties(test, properties);
 
 		assertTrue(test.getName().equals(NAME));
 		assertTrue(test.getAge() == 0);
