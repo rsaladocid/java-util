@@ -26,8 +26,12 @@ public class Configuration {
 		Method[] methods = object.getClass().getMethods();
 
 		for (Method method : methods) {
-			if (!method.isAnnotationPresent(IgnoredProperty.class) && !method.isAnnotationPresent(XmlTransient.class)) {
-				if (method.getName().startsWith(GETTER) && method.getParameterCount() == 0) {
+			if (method.isAnnotationPresent(IgnoredProperty.class) || method.isAnnotationPresent(XmlTransient.class)) {
+				break;
+			}
+
+			if (method.getName().startsWith(GETTER) && method.getName().length() > GETTER.length()) {
+				if (method.getParameterCount() == 0) {
 					try {
 						Object value = method.invoke(object);
 						String name = strategy.getName(method) != null ? strategy.getName(method) : method.getName();
@@ -54,8 +58,12 @@ public class Configuration {
 		Method[] methods = object.getClass().getMethods();
 
 		for (Method method : methods) {
-			if (!method.isAnnotationPresent(IgnoredProperty.class) && !method.isAnnotationPresent(XmlTransient.class)) {
-				if (method.getName().startsWith(SETTER) && method.getParameterCount() == 1) {
+			if (method.isAnnotationPresent(IgnoredProperty.class) || method.isAnnotationPresent(XmlTransient.class)) {
+				break;
+			}
+
+			if (method.getName().startsWith(SETTER) && method.getName().length() > SETTER.length()) {
+				if (method.getParameterCount() == 1) {
 					String name = strategy.getName(method) != null ? strategy.getName(method) : method.getName();
 
 					if (properties != null && properties.containsKey(name)) {
