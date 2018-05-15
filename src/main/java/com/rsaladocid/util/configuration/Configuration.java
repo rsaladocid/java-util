@@ -26,8 +26,8 @@ public class Configuration {
 		Method[] methods = object.getClass().getMethods();
 
 		for (Method method : methods) {
-			if (method.isAnnotationPresent(IgnoredProperty.class) || method.isAnnotationPresent(XmlTransient.class)) {
-				break;
+			if (method.isAnnotationPresent(IgnoreProperty.class) || method.isAnnotationPresent(XmlTransient.class)) {
+				continue;
 			}
 
 			if (method.getName().startsWith(GETTER) && method.getName().length() > GETTER.length()) {
@@ -58,8 +58,8 @@ public class Configuration {
 		Method[] methods = object.getClass().getMethods();
 
 		for (Method method : methods) {
-			if (method.isAnnotationPresent(IgnoredProperty.class) || method.isAnnotationPresent(XmlTransient.class)) {
-				break;
+			if (method.isAnnotationPresent(IgnoreProperty.class) || method.isAnnotationPresent(XmlTransient.class)) {
+				continue;
 			}
 
 			if (method.getName().startsWith(SETTER) && method.getName().length() > SETTER.length()) {
