@@ -6,6 +6,7 @@ public class Person {
 	private String surnames;
 	private int age;
 	private String email;
+	private String canonicalEmail;
 
 	public String getName() {
 		return name;
@@ -41,6 +42,15 @@ public class Person {
 	@Property(name = "e-mail")
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getCanonicalEmail() {
+		return canonicalEmail;
+	}
+
+	@Property(name = "e-mail")
+	public void setCanonicalEmail(String canonicalEmail) {
+		this.canonicalEmail = canonicalEmail;
 	}
 
 	public String get() {
