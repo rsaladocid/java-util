@@ -23,12 +23,12 @@ public class Person {
 		this.surnames = surnames;
 	}
 
-	@IgnoredProperty
+	@IgnoreProperty
 	public int getAge() {
 		return age;
 	}
 
-	@IgnoredProperty
+	@IgnoreProperty
 	public void setAge(int age) {
 		this.age = age;
 	}
@@ -41,6 +41,13 @@ public class Person {
 	@Property(name = "e-mail")
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String get() {
+		return "foo";
+	}
+
+	public void set(String foo) {
 	}
 
 }

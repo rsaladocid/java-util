@@ -36,7 +36,6 @@ public class TestConfiguration {
 
 	@Test
 	public void testGetProperties() {
-		properties.remove("age");
 		Map<String, Object> properties = Configuration.getProperties(person);
 		Set<String> keys = properties.keySet();
 		assertTrue(keys.containsAll(properties.keySet()));
@@ -56,8 +55,10 @@ public class TestConfiguration {
 	public void testSetProperties() {
 		Person test = (Person) Configuration.setProperties(new Person(), properties);
 
-		assertTrue(test.getName().equals(NAME) && test.getAge() == 0 && test.getEmail().equals(EMAIL)
-				&& test.getSurnames().equals(SURNAMES));
+		assertTrue(test.getName().equals(NAME));
+		assertTrue(test.getAge() == 0);
+		assertTrue(test.getEmail().equals(EMAIL));
+		assertTrue(test.getSurnames().equals(SURNAMES));
 	}
 
 }
