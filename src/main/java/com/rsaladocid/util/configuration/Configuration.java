@@ -33,11 +33,11 @@ public class Configuration {
 						String name = strategy.getName(method) != null ? strategy.getName(method) : method.getName();
 						properties.put(name, value);
 					} catch (IllegalArgumentException e) {
-						e.printStackTrace();
+
 					} catch (IllegalAccessException e) {
-						e.printStackTrace();
+
 					} catch (InvocationTargetException e) {
-						e.printStackTrace();
+
 					}
 				}
 			}
