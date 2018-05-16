@@ -4,7 +4,7 @@ com.rsaladocid.util
 Collection of useful reusable Java code.
 
 - [Configuration API](#configuration-api)
-- [I/O API](#i-o-api)
+- [I/O API](#io-api)
 
 Configuration API
 -----------------
