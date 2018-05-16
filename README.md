@@ -1,7 +1,10 @@
 com.rsaladocid.util
-======================
+===================
 
-Collection of useful reusable code
+Collection of useful reusable Java code.
+
+- [Configuration API](#configuration-api)
+- [I/O API](#i-o-api)
 
 Configuration API
 -----------------
@@ -113,6 +116,67 @@ Now, the property `fullName` is ignored and the property `email` is renamed to `
 	person.getName(); // Returns: Bob
 	person.getSurnames(); // Returns: Stub Foo
 	person.getEmail(); // Returns: bob@geemail.com
+```
+
+I/O API
+-------
+
+A simple common API to serialize objects to JSON or XML objects.
+
+### Basic example
+
+Here's a simple `Person` class:
+
+```java
+public class Person {
+	private String name;
+	private String email;
+
+	public Person(String name) {
+		this.name = name;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getEmail() {
+		return email;
+	}
+}
+```
+
+And this is how to easily convert a `Person` object to a JSON object:
+
+```java
+Person person = new Person("Alice");
+person.setEmail("alice@geemail.com");
+Serializer.build().toJson(person, System.out); // Returns: {"person":{"name":"Alice","email":"alice@geemail.com"}}
+```
+
+...or to a XML object:
+
+```java
+Person person = new Person("Alice");
+person.setEmail("alice@geemail.com");
+Serializer.build().toXml(person, System.out); // Returns: <?xml version="1.0" encoding="UTF-8"?><person><name>Alice</name><email>alice@geemail.com</email></person>
+```
+
+Moreover, you can also convert a JSON object to the corresponding object:
+
+```java
+	Person person = (Person) Serializer.build().fromJson(stream, Person.class);
+	person.getName(); // Returns: Alice
+	person.getEmail(); // Returns: alice@geemail.com
+```
+
+...or to convert a XML object to the corresponding object:
+
+```java
+	Person person = (Person) Serializer.build().fromXml(stream, Person.class);
+	person.getName(); // Returns: Alice
+	person.getEmail(); // Returns: alice@geemail.com
 ```
 
 License
