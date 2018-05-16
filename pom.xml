@@ -7,8 +7,8 @@
   <version>0.3.0</version>
   <packaging>jar</packaging>
 
-  <name>util</name>
-  <url>http://maven.apache.org</url>
+  <name>java-util</name>
+  <url>https://github.com/rsaladocid/java-util</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
