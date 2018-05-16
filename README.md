@@ -46,14 +46,14 @@ Configuration.getProperties(person); // Returns: {name=Alice,email=alice@geemail
 Moreover, you can also establish its properties from key-value pairs:
 
 ```java
-	Person person = new Person("Alice");
-	Map<String, Object> config = new HashMap<String, Object>();
-	config.put("name", "Bob");
-	config.put("email", "bob@geemail.com");
+Person person = new Person("Alice");
+Map<String, Object> config = new HashMap<String, Object>();
+config.put("name", "Bob");
+config.put("email", "bob@geemail.com");
 
-	Configuration.setProperties(person, config);
-	person.getName(); // Returns: Bob
-	person.getEmail(); // Returns: bob@geemail.com
+Configuration.setProperties(person, config);
+person.getName(); // Returns: Bob
+person.getEmail(); // Returns: bob@geemail.com
 ```
 
 ### Advanced example
@@ -96,26 +96,26 @@ public class Person {
 Now, the property `fullName` is ignored and the property `email` is renamed to `e-mail`.
 
 ```java
-	Person person = new Person("Alice");
-	person.setSurnames("Foo Stub");
-	person.setEmail("alice@geemail.com");
+Person person = new Person("Alice");
+person.setSurnames("Foo Stub");
+person.setEmail("alice@geemail.com");
 	
-	person.getFullName(); // Returns: Alice Foo Stub
+person.getFullName(); // Returns: Alice Foo Stub
 	
-	Configuration.getProperties(person); // Returns: {name=Alice,surnames=Foo Stub,e-mail=alice@geemail.com}
+Configuration.getProperties(person); // Returns: {name=Alice,surnames=Foo Stub,e-mail=alice@geemail.com}
 ```
 
 ```java
-	Person person = new Person("Alice");
-	Map<String, Object> config = new HashMap<String, Object>();
-	config.put("name", "Bob");
-	config.put("surnames", "Stub Foo");
-	config.put("e-mail", "bob@geemail.com");
+Person person = new Person("Alice");
+Map<String, Object> config = new HashMap<String, Object>();
+config.put("name", "Bob");
+config.put("surnames", "Stub Foo");
+config.put("e-mail", "bob@geemail.com");
 
-	Configuration.setProperties(person, config);
-	person.getName(); // Returns: Bob
-	person.getSurnames(); // Returns: Stub Foo
-	person.getEmail(); // Returns: bob@geemail.com
+Configuration.setProperties(person, config);
+person.getName(); // Returns: Bob
+person.getSurnames(); // Returns: Stub Foo
+person.getEmail(); // Returns: bob@geemail.com
 ```
 
 I/O API
@@ -166,17 +166,17 @@ Serializer.build().toXml(person, System.out); // Returns: <?xml version="1.0" en
 Moreover, you can also convert a JSON object to the corresponding object:
 
 ```java
-	Person person = (Person) Serializer.build().fromJson(stream, Person.class);
-	person.getName(); // Returns: Alice
-	person.getEmail(); // Returns: alice@geemail.com
+Person person = (Person) Serializer.build().fromJson(stream, Person.class);
+person.getName(); // Returns: Alice
+person.getEmail(); // Returns: alice@geemail.com
 ```
 
 ...or to convert a XML object to the corresponding object:
 
 ```java
-	Person person = (Person) Serializer.build().fromXml(stream, Person.class);
-	person.getName(); // Returns: Alice
-	person.getEmail(); // Returns: alice@geemail.com
+Person person = (Person) Serializer.build().fromXml(stream, Person.class);
+person.getName(); // Returns: Alice
+person.getEmail(); // Returns: alice@geemail.com
 ```
 
 License
