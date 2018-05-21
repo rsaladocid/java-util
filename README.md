@@ -140,7 +140,7 @@ record.getTimestamp(); // Returns: 1526916308973
 
 ### Data History
 
-A multi-valued map that stores the different values that each key has along the time into [data records](#data-record).
+A multi-value map to store the different values that each key has along the time into [data records](#data-record).
 
 ```java
 DataHistory<String, String> history = new DataHistory<String, String>();
