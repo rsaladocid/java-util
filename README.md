@@ -129,7 +129,7 @@ A set of data structures intended to different purposes.
 A simple data structure that stores the corresponding timestamp in which the value was set.
 
 ```java
-DataRecord record = new DataRecord("foo");
+DataRecord<String> record = new DataRecord<String>("foo");
 record.getValue(); // Returns: foo
 record.getTimestamp(); // Returns: 1526901443088
 
