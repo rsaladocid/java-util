@@ -4,6 +4,7 @@ com.rsaladocid.util
 Collection of useful reusable Java code.
 
 - [Configuration API](#configuration-api)
+- [Data API](#data-api)
 - [I/O API](#io-api)
 
 Configuration API
@@ -116,6 +117,44 @@ Configuration.setProperties(person, config);
 person.getName(); // Returns: Bob
 person.getSurnames(); // Returns: Stub Foo
 person.getEmail(); // Returns: bob@geemail.com
+```
+
+Data API
+-----------------
+
+A set of data structures intended to different purposes.
+
+### Data Record
+
+A simple data structure that stores the corresponding timestamp in which the value was set.
+
+```java
+DataRecord record = new DataRecord("foo");
+record.getValue(); // Returns: foo
+record.getTimestamp(); // Returns: 1526901443088
+
+record.setValue("bar");
+record.getValue(); // Returns: bar
+record.getTimestamp(); // Returns: 1526916308973
+```
+
+### Data History
+
+A multi-valued map that stores the different values that each key has along the time.
+
+```java
+DataHistory<String, String> history = new DataHistory<String, String>();
+history.putSingle("foo", "foo1");
+history.putSingle("foo", "foo2");
+history.putSingle("foo", "foo3");
+history.putSingle("bar", "bar1");
+
+DataRecord record = history.getMostRecent("foo");
+record.getValue(); // Returns: foo3
+
+Map<String, String> allMostRecentData = history.getAllMostRecent(); // Returns: {foo=foo3,bar=bar1}
+
+Deque<String> stack = history.get("foo"); // Returns: [foo1,foo2,foo3]
 ```
 
 I/O API
