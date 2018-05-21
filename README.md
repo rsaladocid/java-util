@@ -140,7 +140,7 @@ record.getTimestamp(); // Returns: 1526916308973
 
 ### Data History
 
-A multi-valued map that stores the different values that each key has along the time.
+A multi-valued map that stores the different values that each key has along the time into [data records](#data-record).
 
 ```java
 DataHistory<String, String> history = new DataHistory<String, String>();
@@ -149,12 +149,16 @@ history.putSingle("foo", "foo2");
 history.putSingle("foo", "foo3");
 history.putSingle("bar", "bar1");
 
-DataRecord record = history.getMostRecent("foo");
+DataRecord<String> record = history.getMostRecent("foo");
 record.getValue(); // Returns: foo3
 
-Map<String, String> allMostRecentData = history.getAllMostRecent(); // Returns: {foo=foo3,bar=bar1}
+Map<String, DataRecord<String>> allMostRecentData = history.getAllMostRecent();
+allMostRecentData.get("foo").getValue(); // Returns: foo3
+allMostRecentData.get("bar").getValue(); // Returns: bar1
 
-Deque<String> stack = history.get("foo"); // Returns: [foo1,foo2,foo3]
+Deque<DataRecord<String>> deque = history.get("foo");
+deque.peekLast().getValue(); // Returns: foo3
+deque.peekFirst().getValue(); // Returns: foo1
 ```
 
 I/O API
