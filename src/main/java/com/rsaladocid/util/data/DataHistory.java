@@ -1,20 +1,21 @@
 package com.rsaladocid.util.data;
 
 import java.util.ArrayDeque;
+import java.util.Collection;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * <p>
- * A {@link ConcurrentHashMap} where each key has a {@link Deque} of values.
+ * A {@link Map} where each key has a {@link Deque} of values.
  * </p>
  * <p>
  * This class is used to store the different values that each key has along the
- * time. Each value is stored in a {@link DataRecord} that contains the own
- * value and the timestamp in which the value was set.
+ * time. Each value is stored in a {@link DataRecord}.
  * </p>
  *
  * @param <K>
@@ -22,9 +23,65 @@ import java.util.concurrent.ConcurrentHashMap;
  * @param <V>
  *            the type of mapped values
  */
-public class DataHistory<K, V> extends ConcurrentHashMap<K, Deque<DataRecord<V>>> {
+public class DataHistory<K, V> implements Map<K, Deque<DataRecord<V>>> {
 
-	private static final long serialVersionUID = -4796826543554802389L;
+	private Map<K, Deque<DataRecord<V>>> map;
+
+	public DataHistory() {
+		this(new ConcurrentHashMap<K, Deque<DataRecord<V>>>());
+	}
+
+	public DataHistory(Map<K, Deque<DataRecord<V>>> map) {
+		this.map = map;
+	}
+
+	public void clear() {
+		map.clear();
+	}
+
+	public boolean containsKey(Object key) {
+		return map.containsKey(key);
+	}
+
+	public boolean containsValue(Object value) {
+		return map.containsValue(value);
+	}
+
+	public Set<Entry<K, Deque<DataRecord<V>>>> entrySet() {
+		return map.entrySet();
+	}
+
+	public Deque<DataRecord<V>> get(Object key) {
+		return map.get(key);
+	}
+
+	public boolean isEmpty() {
+		return map.isEmpty();
+	}
+
+	public Set<K> keySet() {
+		return map.keySet();
+	}
+
+	public Deque<DataRecord<V>> put(K key, Deque<DataRecord<V>> value) {
+		return map.put(key, value);
+	}
+
+	public void putAll(Map<? extends K, ? extends Deque<DataRecord<V>>> m) {
+		map.putAll(m);
+	}
+
+	public Deque<DataRecord<V>> remove(Object key) {
+		return map.remove(key);
+	}
+
+	public int size() {
+		return map.size();
+	}
+
+	public Collection<Deque<DataRecord<V>>> values() {
+		return map.values();
+	}
 
 	/**
 	 * Set the key's value to be a one item deque consisting of the supplied value.
@@ -34,7 +91,7 @@ public class DataHistory<K, V> extends ConcurrentHashMap<K, Deque<DataRecord<V>>
 	 * @param value
 	 *            the single value of the key
 	 */
-	public synchronized void putSingle(K key, V value) {
+	public void putSingle(K key, V value) {
 		Deque<DataRecord<V>> entries = get(key);
 
 		if (entries == null) {
