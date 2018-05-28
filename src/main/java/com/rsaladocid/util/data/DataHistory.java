@@ -1,9 +1,9 @@
 package com.rsaladocid.util.data;
 
+import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -38,7 +38,7 @@ public class DataHistory<K, V> extends ConcurrentHashMap<K, Deque<DataRecord<V>>
 		Deque<DataRecord<V>> entries = get(key);
 
 		if (entries == null) {
-			entries = new LinkedList<DataRecord<V>>();
+			entries = new ArrayDeque<DataRecord<V>>();
 			put(key, entries);
 		}
 
