@@ -75,7 +75,7 @@ public class DataRecord<T> {
 	 * @param timestamp
 	 *            the timestamp to set
 	 */
-	protected void setTimestamp(long timestamp) {
+	protected final void setTimestamp(long timestamp) {
 		this.timestamp = timestamp;
 	}
 

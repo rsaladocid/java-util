@@ -44,7 +44,18 @@ public class DataHistory<K, V> implements Map<K, Deque<DataRecord<V>>> {
 	}
 
 	public boolean containsValue(Object value) {
-		return map.containsValue(value);
+		Iterator<K> iterator = map.keySet().iterator();
+
+		while (iterator.hasNext()) {
+			K key = iterator.next();
+			Deque<DataRecord<V>> values = map.get(key);
+
+			if (values.contains(value)) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	public Set<Entry<K, Deque<DataRecord<V>>>> entrySet() {
@@ -84,7 +95,7 @@ public class DataHistory<K, V> implements Map<K, Deque<DataRecord<V>>> {
 	}
 
 	/**
-	 * Set the key's value to be a one item deque consisting of the supplied value.
+	 * Sets a single key's value.
 	 * 
 	 * @param key
 	 *            the key
@@ -133,7 +144,7 @@ public class DataHistory<K, V> implements Map<K, Deque<DataRecord<V>>> {
 	 * 
 	 * @param key
 	 *            the key
-	 * @return the most recent data record, or <code>null</code> if these is no data
+	 * @return the most recent data record, or <code>null</code> if there is no data
 	 *         record for the given key
 	 */
 	public DataRecord<V> getMostRecent(K key) {
